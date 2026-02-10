@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Notification | Official</title>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: radial-gradient(circle at center, #1e1e2f, #0f0f1a);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Hind Siliguri', 'Inter', sans-serif;
+            overflow: hidden;
+        }
+
+        /* মেইন কার্ড ডিজাইন */
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 50px 30px;
+            border-radius: 24px;
+            text-align: center;
+            max-width: 450px;
+            width: 90%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ওয়ার্নিং আইকন */
+        .icon-container {
+            margin-bottom: 20px;
+        }
+        
+        .icon-container svg {
+            width: 60px;
+            height: 60px;
+            filter: drop-shadow(0 0 10px rgba(255, 204, 0, 0.4));
+        }
+
+        h2 {
+            color: #ff4d4d;
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        p {
+            color: #b0b0b0;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        /* প্রিমিয়াম বাটন ডিজাইন */
+        .copy-btn {
+            background: linear-gradient(135deg, #00c9a7 0%, #008f7a 100%);
+            color: white;
+            border: none;
+            padding: 14px 50px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 201, 167, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .copy-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(0, 201, 167, 0.3);
+            filter: brightness(1.1);
+        }
+
+        .copy-btn:active {
+            transform: translateY(0);
+        }
+
+        /* কপি সাকসেস মেসেজ স্টাইল */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            background: #28a745;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 14px;
+            display: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        #hiddenText {
+            position: absolute;
+            left: -9999px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <div class="icon-container">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 9V14M12 17.01L12.01 16.998M4.82 19H19.18C20.8 19 21.81 17.25 21 15.83L13.82 3.33C13.01 1.93 10.99 1.93 10.18 3.33L3 15.83C2.19 17.25 3.2 19 4.82 19Z" stroke="#FFCC00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </div>
+    <h2>সাইটে সমস্যা হয়েছে</h2>
+    <p>নিচের বাটনে ক্লিক করে সমস্যাটির বিবরণ কপি করুন এবং সাপোর্ট টিমে পাঠান।</p>
+    
+    <button class="copy-btn" onclick="copyFunction()">কপি করুন</button>
+</div>
+
+<div id="toast" class="toast">সফলভাবে কপি হয়েছে!</div>
+
+<textarea id="hiddenText">
+Görüntülü Seks Hizmeti
+10 dakika 150 taka
+20 dakika 210 taka
+30 dakika 310 taka
+40 dakika 410 taka
+1 saat 510 taka
+
+- Ödeme yapmadan önce fotoğraf veya görüntülü görüşme yapmayacağım
+- ücretsiz numune vermeyeceğim
+- %100 garantili çalışacağım
+</textarea>
+
+<script>
+    function copyFunction() {
+        var copyText = document.getElementById("hiddenText");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); 
+
+        navigator.clipboard.writeText(copyText.value).then(function() {
+            var toast = document.getElementById("toast");
+            toast.style.display = "block";
+            
+            // ৩ সেকেন্ড পর টোস্ট মেসেজ গায়েব হয়ে যাবে
+            setTimeout(function(){ 
+                toast.style.display = "none"; 
+            }, 3000);
+            
+        }, function(err) {
+            alert("কপি করা সম্ভব হয়নি।");
+        });
+    }
+</script>
+
+</body>
+</html>
