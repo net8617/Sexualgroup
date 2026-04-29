@@ -3,190 +3,214 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSB ELITE STRIKE INTERFACE</title>
+    <title>CSB | TikTok Advanced Strike Engine</title>
     <style>
         :root {
-            --neon-blue: #00e5ff;
-            --neon-red: #ff0055;
-            --neon-green: #39ff14;
-            --terminal-bg: #030303;
+            --tk-red: #ff0050;
+            --tk-cyan: #00f2ea;
+            --dark-core: #010101;
+            --terminal-green: #00ff41;
         }
 
         body {
-            background-color: var(--terminal-bg);
-            color: #fff;
-            font-family: 'Segoe UI', monospace;
+            background-color: var(--dark-core);
+            color: white;
+            font-family: 'Consolas', 'Courier New', monospace;
+            margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            margin: 0;
             overflow: hidden;
         }
 
-        .cyber-box {
-            width: 90%;
-            max-width: 700px;
-            background: rgba(0, 0, 0, 0.95);
-            border: 1px solid var(--neon-blue);
-            box-shadow: 0 0 30px rgba(0, 229, 255, 0.15);
-            padding: 30px;
+        .strike-panel {
+            width: 95%;
+            max-width: 650px;
+            background: rgba(0, 0, 0, 0.9);
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 0 30px rgba(255, 0, 80, 0.15);
             position: relative;
         }
 
-        .cyber-box::before {
-            content: "SECURED_CONNECTION_ACTIVE";
+        .strike-panel::after {
+            content: "TIKTOK_STRIKE_PROTOCOL_V2";
             position: absolute;
             top: -10px;
-            right: 20px;
-            background: var(--neon-blue);
-            color: #000;
+            left: 20px;
+            background: var(--tk-red);
+            color: white;
+            padding: 2px 10px;
             font-size: 10px;
-            padding: 2px 8px;
             font-weight: bold;
+            border-radius: 4px;
         }
 
-        h1 {
+        h2 {
             text-align: center;
-            font-size: 1.2rem;
-            letter-spacing: 5px;
-            color: var(--neon-blue);
-            text-shadow: 0 0 10px var(--neon-blue);
+            font-size: 1.4rem;
+            color: var(--tk-cyan);
+            letter-spacing: 3px;
             margin-bottom: 20px;
+            border-bottom: 1px solid #222;
+            padding-bottom: 10px;
         }
 
-        .input-field {
-            width: 100%;
-            padding: 12px;
-            background: #000;
-            border: 1px solid #333;
-            color: var(--neon-green);
-            font-size: 1rem;
+        .input-section {
+            display: flex;
+            gap: 10px;
             margin-bottom: 15px;
-            box-sizing: border-box;
+        }
+
+        input {
+            flex: 1;
+            padding: 12px;
+            background: #0a0a0a;
+            border: 1px solid #444;
+            color: var(--tk-cyan);
+            border-radius: 5px;
             outline: none;
         }
 
-        .stats-grid {
+        input:focus {
+            border-color: var(--tk-cyan);
+            box-shadow: 0 0 10px rgba(0, 242, 234, 0.2);
+        }
+
+        .grid-options {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
+            gap: 10px;
             margin-bottom: 20px;
         }
 
-        .stat-card {
-            background: #0a0a0a;
-            border: 1px solid #222;
+        .option {
+            background: #111;
             padding: 10px;
+            border-radius: 4px;
             font-size: 0.8rem;
+            color: #ccc;
+            border: 1px solid #222;
+            cursor: pointer;
+            transition: 0.2s;
         }
 
-        .stat-card span {
-            color: var(--neon-blue);
-            display: block;
-            margin-bottom: 5px;
+        .option:hover {
+            border-color: var(--tk-red);
+            color: white;
         }
 
-        .terminal-window {
-            height: 200px;
-            background: #000;
+        .terminal {
+            height: 180px;
+            background: black;
             border: 1px solid #1a1a1a;
             padding: 10px;
-            font-size: 0.8rem;
-            color: var(--neon-green);
-            overflow-y: scroll;
+            font-size: 0.75rem;
+            color: var(--terminal-green);
+            overflow-y: auto;
             margin-bottom: 20px;
-            border-left: 2px solid var(--neon-red);
+            border-radius: 5px;
+            line-height: 1.5;
         }
 
-        .btn-strike {
+        .btn-launch {
             width: 100%;
             padding: 15px;
-            background: transparent;
-            border: 1px solid var(--neon-red);
-            color: var(--neon-red);
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .btn-strike:hover {
-            background: var(--neon-red);
+            background: linear-gradient(45deg, var(--tk-red), #90002d);
+            border: none;
             color: white;
-            box-shadow: 0 0 20px var(--neon-red);
+            font-weight: bold;
+            letter-spacing: 2px;
+            cursor: pointer;
+            border-radius: 5px;
+            text-transform: uppercase;
         }
 
-        ::-webkit-scrollbar { width: 5px; }
+        .btn-launch:active { transform: scale(0.98); }
+
+        .status-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.7rem;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-thumb { background: #333; }
     </style>
 </head>
 <body>
 
-<div class="cyber-box">
-    <h1>MULTI-PROTOCOL STRIKE v9.0</h1>
+<div class="strike-panel">
+    <h2>CSB ADVANCED ENGINE</h2>
     
-    <input type="text" id="targetId" class="input-field" placeholder="INPUT TARGET ID OR PROFILE LINK">
-
-    <div class="stats-grid">
-        <div class="stat-card">
-            <span>ACTIVE PROXY</span>
-            <div id="proxy-val">ENCRYPTED</div>
-        </div>
-        <div class="stat-card">
-            <span>REPORT THREADS</span>
-            <div>999+ / INFINITE</div>
-        </div>
+    <div class="input-section">
+        <input type="text" id="targetInput" placeholder="Enter TikTok @username or Video Link...">
     </div>
 
-    <div class="terminal-window" id="terminal">
-        [SYSTEM] WAITING FOR TARGET AUTHORIZATION...
+    <div class="grid-options">
+        <div class="option">[X] Minor Safety</div>
+        <div class="option">[X] Hate Speech</div>
+        <div class="option">[X] Dangerous Acts</div>
+        <div class="option">[X] Illegal Goods</div>
+        <div class="option">[X] Harassment</div>
+        <div class="option">[X] Spam Content</div>
     </div>
 
-    <button class="btn-strike" onclick="executeStrike()">Execute Unlimited Sequence</button>
+    <div class="terminal" id="termLog">
+        [SYSTEM] STANDBY. AWAITING DATA...
+    </div>
+
+    <button class="btn-launch" onclick="startEngine()">Execute Multi-Thread Strike</button>
+
+    <div class="status-row">
+        <span>ENCRYPTION: ACTIVE</span>
+        <span id="ipStatus">IP: STABLE</span>
+        <span>NODE: CSB-DHAKA</span>
+    </div>
 </div>
 
 <script>
-    function executeStrike() {
-        const terminal = document.getElementById('terminal');
-        const target = document.getElementById('targetId').value || "TARGET_X";
-        const proxyVal = document.getElementById('proxy-val');
+    function startEngine() {
+        const log = document.getElementById('termLog');
+        const target = document.getElementById('targetInput').value || "TARGET_UNDEFINED";
+        const ipStatus = document.getElementById('ipStatus');
         
-        let reportCategories = [
-            "Under 18 Violation", "Harassment & Bullying", "Self-Harm Alert", 
-            "Violent Content", "Restricted Goods", "Adult Material", 
-            "Scam & Fraud", "Intellectual Property"
-        ];
+        log.innerHTML = `<span style="color:white">[!] INITIALIZING ATTACK SEQUENCE ON: ${target}</span>`;
+        
+        let counter = 0;
+        const categories = ["Minor Safety", "Illegal Goods", "Spam", "Hate Speech", "Harassment"];
 
-        let count = 0;
-
-        function logNext() {
-            const category = reportCategories[Math.floor(Math.random() * reportCategories.length)];
+        const attackInterval = setInterval(() => {
             const randomIP = `${Math.floor(Math.random()*255)}.${Math.floor(Math.random()*255)}.${Math.floor(Math.random()*255)}.${Math.floor(Math.random()*255)}`;
+            const randomCategory = categories[Math.floor(Math.random()*categories.length)];
             
-            const logs = [
-                `<span style="color: #666">[${new Date().toLocaleTimeString()}]</span> <span style="color:var(--neon-blue)">IP_ROTATED:</span> ${randomIP}`,
-                `<span style="color: #666">[${new Date().toLocaleTimeString()}]</span> <span style="color:var(--neon-red)">SENDING_REPORT:</span> [${category}] to ${target}`,
-                `<span style="color: #666">[${new Date().toLocaleTimeString()}]</span> <span style="color:var(--neon-green)">STATUS:</span> REQUEST_ACCEPTED_BY_NODE`
+            const messages = [
+                `> ROTATING PROXY... NEW IP: ${randomIP}`,
+                `> BYPASSING RATE-LIMIT FOR CATEGORY: [${randomCategory}]`,
+                `> SENDING ENCRYPTED REPORT PACKET...`,
+                `<span style="color:${counter % 2 === 0 ? '#ff0050' : '#00f2ea'}">> STRIKE LOGGED SUCCESSFULLY [ID: ${Math.floor(Math.random()*99999)}]</span>`
             ];
 
-            proxyVal.innerText = randomIP;
+            const msg = messages[counter % messages.length];
+            log.innerHTML += `<div>${msg}</div>`;
+            log.scrollTop = log.scrollHeight;
             
-            logs.forEach((msg, index) => {
-                setTimeout(() => {
-                    terminal.innerHTML += `<div>${msg}</div>`;
-                    terminal.scrollTop = terminal.scrollHeight;
-                }, index * 200);
-            });
+            if(msg.includes("IP:")) {
+                ipStatus.innerText = "IP: " + randomIP;
+                ipStatus.style.color = "var(--tk-cyan)";
+            }
 
-            count++;
-            // Infinite loop simulation
-            setTimeout(logNext, 1500);
-        }
-
-        terminal.innerHTML = `<div>[ALERT] INITIALIZING INFINITE ATTACK ON: ${target}</div>`;
-        logNext();
+            counter++;
+            
+            // Limit for simulation safety, but visually loops
+            if(counter > 1000) {
+                log.innerHTML += `<br><span style="color:red">SYSTEM ALERT: INFINITE LOOP MODE ACTIVE</span>`;
+            }
+        }, 500);
     }
 </script>
 
