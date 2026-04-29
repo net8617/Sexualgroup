@@ -3,163 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>System Notification | Official</title>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-    
+    <title>Auto FB ID Report | CSB</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            background: radial-gradient(circle at center, #1e1e2f, #0f0f1a);
-            height: 100vh;
+            background-color: #0a0a0a;
+            color: #00ff41;
+            font-family: 'Courier New', Courier, monospace;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: 'Hind Siliguri', 'Inter', sans-serif;
+            height: 100vh;
+            margin: 0;
             overflow: hidden;
         }
 
-        /* মেইন কার্ড ডিজাইন */
-        .card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 50px 30px;
-            border-radius: 24px;
+        .container {
+            border: 2px solid #00ff41;
+            padding: 30px;
+            background: rgba(0, 20, 0, 0.9);
+            box-shadow: 0 0 20px #00ff41;
             text-align: center;
-            max-width: 450px;
             width: 90%;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            animation: fadeIn 0.8s ease-out;
+            max-width: 500px;
+            border-radius: 10px;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        h1 {
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px #00ff41;
         }
 
-        /* ওয়ার্নিং আইকন */
-        .icon-container {
+        .input-group {
             margin-bottom: 20px;
         }
-        
-        .icon-container svg {
-            width: 60px;
-            height: 60px;
-            filter: drop-shadow(0 0 10px rgba(255, 204, 0, 0.4));
+
+        input {
+            width: 100%;
+            padding: 12px;
+            background: #000;
+            border: 1px solid #00ff41;
+            color: #00ff41;
+            outline: none;
+            box-sizing: border-box;
         }
 
-        h2 {
-            color: #ff4d4d;
-            font-size: 28px;
-            font-weight: 600;
-            margin-bottom: 12px;
-            letter-spacing: 0.5px;
-        }
-
-        p {
-            color: #b0b0b0;
-            font-size: 16px;
-            line-height: 1.6;
-            margin-bottom: 30px;
-        }
-
-        /* প্রিমিয়াম বাটন ডিজাইন */
-        .copy-btn {
-            background: linear-gradient(135deg, #00c9a7 0%, #008f7a 100%);
-            color: white;
+        button {
+            padding: 10px 25px;
+            background: #00ff41;
+            color: #000;
             border: none;
-            padding: 14px 50px;
-            font-size: 18px;
-            font-weight: 600;
-            border-radius: 12px;
+            font-weight: bold;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 20px rgba(0, 201, 167, 0.2);
-            position: relative;
-            overflow: hidden;
+            transition: 0.3s;
+            text-transform: uppercase;
         }
 
-        .copy-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 25px rgba(0, 201, 167, 0.3);
-            filter: brightness(1.1);
+        button:hover {
+            background: #000;
+            color: #00ff41;
+            border: 1px solid #00ff41;
+            box-shadow: 0 0 15px #00ff41;
         }
 
-        .copy-btn:active {
-            transform: translateY(0);
+        .status-box {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            height: 60px;
+            overflow-y: auto;
+            border-top: 1px solid #333;
+            padding-top: 10px;
         }
 
-        /* কপি সাকসেস মেসেজ স্টাইল */
-        .toast {
-            position: fixed;
-            bottom: 30px;
-            background: #28a745;
-            color: white;
-            padding: 12px 25px;
-            border-radius: 50px;
-            font-size: 14px;
-            display: none;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        .footer {
+            margin-top: 25px;
+            font-size: 0.8rem;
+            border-top: 1px solid #333;
+            padding-top: 10px;
         }
 
-        #hiddenText {
-            position: absolute;
-            left: -9999px;
+        .glow-text {
+            color: #ff003c;
+            text-shadow: 0 0 5px #ff003c;
         }
     </style>
 </head>
 <body>
 
-<div class="card">
-    <div class="icon-container">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 9V14M12 17.01L12.01 16.998M4.82 19H19.18C20.8 19 21.81 17.25 21 15.83L13.82 3.33C13.01 1.93 10.99 1.93 10.18 3.33L3 15.83C2.19 17.25 3.2 19 4.82 19Z" stroke="#FFCC00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-    </div>
-    <h2>সাইটে সমস্যা হয়েছে</h2>
-    <p>নিচের বাটনে ক্লিক করে সমস্যাটির বিবরণ কপি করুন এবং সাপোর্ট টিমে পাঠান।</p>
+<div class="container">
+    <h1>অটো ফেসবুক আইডি রিপোর্ট</h1>
+    <p>Target Link বসান নিচে:</p>
     
-    <button class="copy-btn" onclick="copyFunction()">কপি করুন</button>
+    <div class="input-group">
+        <input type="text" id="targetLink" placeholder="https://www.facebook.com/profile.php?id=...">
+    </div>
+
+    <button onclick="startReporting()">রিপোর্ট শুরু করুন</button>
+
+    <div class="status-box" id="status">
+        সিস্টেম রেডি... কমান্ডের জন্য অপেক্ষা করছে।
+    </div>
+
+    <div class="footer">
+        <p>Developer: <span class="glow-text">DARK SILENCE ( MAHIR )</span></p>
+        <p>Team: <strong>Cyber Sentinel Bangladesh</strong></p>
+    </div>
 </div>
 
-<div id="toast" class="toast">সফলভাবে কপি হয়েছে!</div>
-
-<textarea id="hiddenText">
-Görüntülü Seks Hizmeti
-10 dakika 150 taka
-20 dakika 210 taka
-30 dakika 310 taka
-40 dakika 410 taka
-1 saat 510 taka
-
-- Ödeme yapmadan önce fotoğraf veya görüntülü görüşme yapmayacağım
-- ücretsiz numune vermeyeceğim
-- %100 garantili çalışacağım
-</textarea>
-
 <script>
-    function copyFunction() {
-        var copyText = document.getElementById("hiddenText");
-        copyText.select();
-        copyText.setSelectionRange(0, 99999); 
+    function startReporting() {
+        const link = document.getElementById('targetLink').value;
+        const status = document.getElementById('status');
 
-        navigator.clipboard.writeText(copyText.value).then(function() {
-            var toast = document.getElementById("toast");
-            toast.style.display = "block";
+        if (!link) {
+            alert("অনুগ্রহ করে আইডির লিংক দিন!");
+            return;
+        }
+
+        status.innerHTML = "টার্গেট লক করা হয়েছে...<br>";
+        
+        let count = 1;
+        const interval = setInterval(() => {
+            status.innerHTML += রিপোর্ট নং ${count} পাঠানো হচ্ছে... সফল!<br>;
+            status.scrollTop = status.scrollHeight;
+            count++;
             
-            // ৩ সেকেন্ড পর টোস্ট মেসেজ গায়েব হয়ে যাবে
-            setTimeout(function(){ 
-                toast.style.display = "none"; 
-            }, 3000);
-            
-        }, function(err) {
-            alert("কপি করা সম্ভব হয়নি।");
-        });
+            if (count > 100) { // ডেমো হিসেবে ১০০ বার দেখাবে
+                clearInterval(interval);
+                status.innerHTML += "অটোমেশন মোড সক্রিয় রাখা হয়েছে।";
+            }
+        }, 1500);
     }
 </script>
 
