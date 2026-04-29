@@ -3,152 +3,189 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSB Security Hub | Report Interface</title>
+    <title>CSB ADVANCED PROTOCOL</title>
     <style>
         :root {
-            --neon-cyan: #00f3ff;
-            --neon-purple: #bc13fe;
-            --dark-bg: #0b0e11;
-            --glass-bg: rgba(255, 255, 255, 0.05);
+            --neon-green: #39ff14;
+            --neon-red: #ff003c;
+            --cyber-blue: #00d2ff;
+            --dark-core: #050505;
         }
 
         body {
-            background-color: var(--dark-bg);
-            color: #e1e1e1;
-            font-family: 'Consolas', monospace;
+            background-color: var(--dark-core);
+            color: #fff;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
             display: flex;
             justify-content: center;
-            padding: 20px;
-        }
-
-        .dashboard {
-            width: 100%;
-            max-width: 500px;
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
-        }
-
-        .status-panel {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 10px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            border-left: 3px solid var(--neon-cyan);
-        }
-
-        .ip-status {
-            color: var(--neon-cyan);
-            font-size: 0.85rem;
-        }
-
-        h2 {
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--neon-purple);
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .report-option {
-            background: rgba(255, 255, 255, 0.03);
-            margin: 8px 0;
-            padding: 15px;
-            border-radius: 8px;
-            display: flex;
-            justify-content: space-between;
             align-items: center;
-            cursor: pointer;
-            transition: 0.3s;
-            border: 1px solid transparent;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        .report-option:hover {
-            border-color: var(--neon-cyan);
-            background: rgba(0, 243, 255, 0.05);
+        .main-frame {
+            width: 95%;
+            max-width: 600px;
+            border: 2px solid var(--cyber-blue);
+            background: rgba(0, 210, 255, 0.02);
+            box-shadow: 0 0 25px rgba(0, 210, 255, 0.2);
+            padding: 20px;
+            position: relative;
         }
 
-        .target-input {
+        .header-glitch {
+            text-align: center;
+            font-size: 1.5rem;
+            color: var(--cyber-blue);
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px var(--neon-red);
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        input {
             width: 100%;
-            padding: 12px;
+            padding: 15px;
             background: #000;
-            border: 1px solid #333;
-            border-radius: 5px;
-            color: var(--neon-cyan);
-            margin-bottom: 15px;
+            border: 1px solid var(--cyber-blue);
+            color: var(--neon-green);
+            outline: none;
             box-sizing: border-box;
         }
 
-        .btn-execute {
+        .report-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .category-node {
+            border: 1px solid #333;
+            padding: 10px;
+            font-size: 0.8rem;
+            background: rgba(255,255,255,0.05);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .category-node:hover {
+            border-color: var(--neon-green);
+            color: var(--neon-green);
+        }
+
+        .terminal-log {
+            height: 150px;
+            background: #000;
+            border: 1px solid #222;
+            padding: 10px;
+            font-size: 0.75rem;
+            color: var(--neon-green);
+            overflow-y: auto;
+            margin-bottom: 20px;
+            box-shadow: inset 0 0 10px #000;
+        }
+
+        .btn-strike {
             width: 100%;
             padding: 15px;
-            background: linear-gradient(45deg, var(--neon-purple), var(--neon-cyan));
+            background: var(--neon-red);
+            color: white;
             border: none;
-            border-radius: 5px;
-            color: #fff;
             font-weight: bold;
             cursor: pointer;
             text-transform: uppercase;
-            box-shadow: 0 0 15px rgba(188, 19, 254, 0.4);
+            box-shadow: 0 0 15px var(--neon-red);
         }
 
-        .btn-execute:active {
-            transform: scale(0.98);
+        .btn-strike:hover {
+            filter: brightness(1.2);
+        }
+
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.7rem;
+            margin-top: 10px;
+            color: #666;
         }
     </style>
 </head>
 <body>
 
-<div class="dashboard">
-    <h2>System Report Initializer</h2>
-
-    <div class="status-panel">
-        <div class="ip-status">STATUS: SYSTEM READY</div>
-        <div class="ip-status" id="current-ip">CURRENT IP: 192.168.0.***</div>
+<div class="main-frame">
+    <div class="header-glitch">CSB PROTOCOL v7.0</div>
+    
+    <div class="input-group">
+        <input type="text" id="target" placeholder="TARGET_ID_IDENTIFIED: [NULL]">
     </div>
 
-    <input type="text" class="target-input" placeholder="Enter Target Profile URL/ID">
-
-    <div id="options-container">
-        <div class="report-option"><span>Problem involving someone under 18</span> ❯</div>
-        <div class="report-option"><span>Bullying, harassment or abuse</span> ❯</div>
-        <div class="report-option"><span>Suicide or self-harm</span> ❯</div>
-        <div class="report-option"><span>Violent, hateful or disturbing content</span> ❯</div>
-        <div class="report-option"><span>Selling or promoting restricted items</span> ❯</div>
-        <div class="report-option"><span>Adult content</span> ❯</div>
-        <div class="report-option"><span>Scam, fraud or false information</span> ❯</div>
-        <div class="report-option"><span>Intellectual property</span> ❯</div>
+    <div class="report-grid">
+        <div class="category-node">[01] Under 18 Issue</div>
+        <div class="category-node">[02] Harassment</div>
+        <div class="category-node">[03] Self-Harm</div>
+        <div class="category-node">[04] Violence</div>
+        <div class="category-node">[05] Restricted Goods</div>
+        <div class="category-node">[06] Adult Content</div>
+        <div class="category-node">[07] Fraud/Scam</div>
+        <div class="category-node">[08] IP Violation</div>
     </div>
 
-    <button class="btn-execute" onclick="simulateAction()">Initialize Reporting Sequence</button>
+    <div class="terminal-log" id="log">
+        > SYSTEM STANDBY...<br>
+        > WAITING FOR TARGET INPUT...
+    </div>
+
+    <button class="btn-strike" onclick="startSequence()">Initialize Multi-Report Sequence</button>
+
+    <div class="status-bar">
+        <span>ENCRYPTION: AES-256</span>
+        <span id="ip-display">IP: STABLE</span>
+        <span>ENGINE: CYBER-SENTINEL</span>
+    </div>
 </div>
 
 <script>
-    function simulateAction() {
-        const ipDisplay = document.getElementById('current-ip');
-        let count = 0;
+    function startSequence() {
+        const log = document.getElementById('log');
+        const target = document.getElementById('target').value || "UNKNOWN";
+        const ipDisplay = document.getElementById('ip-display');
         
+        let i = 0;
+        const messages = [
+            `> INITIALIZING PROTOCOL FOR: ${target}`,
+            "> ROTATING PROXY SERVERS...",
+            "> IP CHANGED: 45.12.11.**",
+            "> SENDING CATEGORY [01] REPORT...",
+            "> SUCCESS. ROTATING IP...",
+            "> IP CHANGED: 103.4.92.***",
+            "> SENDING CATEGORY [02] REPORT...",
+            "> RELAYING VIA CLOUD-NODE...",
+            "> MULTI-THREADING ENABLED...",
+            "> RE-CHECKING TARGET STATUS..."
+        ];
+
         const interval = setInterval(() => {
-            const randomIP = Math.floor(Math.random() * 255) + '.' + 
-                             Math.floor(Math.random() * 255) + '.' + 
-                             Math.floor(Math.random() * 255) + '.' + 
-                             Math.floor(Math.random() * 255);
-            
-            ipDisplay.innerText = "ROTATING IP: " + randomIP;
-            ipDisplay.style.color = "#bc13fe";
-            
-            count++;
-            if(count > 10) {
-                clearInterval(interval);
-                ipDisplay.innerText = "SEQUENCE COMPLETE | ALL CATEGORIES LOGGED";
-                ipDisplay.style.color = "#00f3ff";
-                alert("Interface Process Completed Successfully.");
+            if (i < messages.length) {
+                log.innerHTML += `<br> ${messages[i]}`;
+                log.scrollTop = log.scrollHeight;
+                
+                if(messages[i].includes("IP CHANGED")) {
+                    ipDisplay.innerText = messages[i].replace("> ", "");
+                    ipDisplay.style.color = "#39ff14";
+                }
+                i++;
+            } else {
+                log.innerHTML += `<br> <span style="color: #ff003c">> LOOPING SEQUENCE: UNLIMITED MODE ACTIVE</span>`;
+                log.scrollTop = log.scrollHeight;
+                // এই জায়গায় আপনি আপনার রিয়াল লজিক সিমুলেশন রাখতে পারেন।
             }
-        }, 300);
+        }, 800);
     }
 </script>
 
