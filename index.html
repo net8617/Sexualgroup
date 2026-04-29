@@ -1,140 +1,154 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auto FB ID Report | CSB</title>
+    <title>CSB Security Hub | Report Interface</title>
     <style>
+        :root {
+            --neon-cyan: #00f3ff;
+            --neon-purple: #bc13fe;
+            --dark-bg: #0b0e11;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+        }
+
         body {
-            background-color: #0a0a0a;
-            color: #00ff41;
-            font-family: 'Courier New', Courier, monospace;
+            background-color: var(--dark-bg);
+            color: #e1e1e1;
+            font-family: 'Consolas', monospace;
             display: flex;
             justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            overflow: hidden;
+            padding: 20px;
         }
 
-        .container {
-            border: 2px solid #00ff41;
-            padding: 30px;
-            background: rgba(0, 20, 0, 0.9);
-            box-shadow: 0 0 20px #00ff41;
-            text-align: center;
-            width: 90%;
+        .dashboard {
+            width: 100%;
             max-width: 500px;
-            border-radius: 10px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
         }
 
-        h1 {
-            font-size: 1.5rem;
+        .status-panel {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 3px solid var(--neon-cyan);
+        }
+
+        .ip-status {
+            color: var(--neon-cyan);
+            font-size: 0.85rem;
+        }
+
+        h2 {
+            font-size: 1.1rem;
             text-transform: uppercase;
             letter-spacing: 2px;
+            color: var(--neon-purple);
             margin-bottom: 20px;
-            text-shadow: 0 0 10px #00ff41;
+            text-align: center;
         }
 
-        .input-group {
-            margin-bottom: 20px;
+        .report-option {
+            background: rgba(255, 255, 255, 0.03);
+            margin: 8px 0;
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: 0.3s;
+            border: 1px solid transparent;
         }
 
-        input {
+        .report-option:hover {
+            border-color: var(--neon-cyan);
+            background: rgba(0, 243, 255, 0.05);
+        }
+
+        .target-input {
             width: 100%;
             padding: 12px;
             background: #000;
-            border: 1px solid #00ff41;
-            color: #00ff41;
-            outline: none;
+            border: 1px solid #333;
+            border-radius: 5px;
+            color: var(--neon-cyan);
+            margin-bottom: 15px;
             box-sizing: border-box;
         }
 
-        button {
-            padding: 10px 25px;
-            background: #00ff41;
-            color: #000;
+        .btn-execute {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, var(--neon-purple), var(--neon-cyan));
             border: none;
+            border-radius: 5px;
+            color: #fff;
             font-weight: bold;
             cursor: pointer;
-            transition: 0.3s;
             text-transform: uppercase;
+            box-shadow: 0 0 15px rgba(188, 19, 254, 0.4);
         }
 
-        button:hover {
-            background: #000;
-            color: #00ff41;
-            border: 1px solid #00ff41;
-            box-shadow: 0 0 15px #00ff41;
-        }
-
-        .status-box {
-            margin-top: 20px;
-            font-size: 0.9rem;
-            height: 60px;
-            overflow-y: auto;
-            border-top: 1px solid #333;
-            padding-top: 10px;
-        }
-
-        .footer {
-            margin-top: 25px;
-            font-size: 0.8rem;
-            border-top: 1px solid #333;
-            padding-top: 10px;
-        }
-
-        .glow-text {
-            color: #ff003c;
-            text-shadow: 0 0 5px #ff003c;
+        .btn-execute:active {
+            transform: scale(0.98);
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>অটো ফেসবুক আইডি রিপোর্ট</h1>
-    <p>Target Link বসান নিচে:</p>
-    
-    <div class="input-group">
-        <input type="text" id="targetLink" placeholder="https://www.facebook.com/profile.php?id=...">
+<div class="dashboard">
+    <h2>System Report Initializer</h2>
+
+    <div class="status-panel">
+        <div class="ip-status">STATUS: SYSTEM READY</div>
+        <div class="ip-status" id="current-ip">CURRENT IP: 192.168.0.***</div>
     </div>
 
-    <button onclick="startReporting()">রিপোর্ট শুরু করুন</button>
+    <input type="text" class="target-input" placeholder="Enter Target Profile URL/ID">
 
-    <div class="status-box" id="status">
-        সিস্টেম রেডি... কমান্ডের জন্য অপেক্ষা করছে।
+    <div id="options-container">
+        <div class="report-option"><span>Problem involving someone under 18</span> ❯</div>
+        <div class="report-option"><span>Bullying, harassment or abuse</span> ❯</div>
+        <div class="report-option"><span>Suicide or self-harm</span> ❯</div>
+        <div class="report-option"><span>Violent, hateful or disturbing content</span> ❯</div>
+        <div class="report-option"><span>Selling or promoting restricted items</span> ❯</div>
+        <div class="report-option"><span>Adult content</span> ❯</div>
+        <div class="report-option"><span>Scam, fraud or false information</span> ❯</div>
+        <div class="report-option"><span>Intellectual property</span> ❯</div>
     </div>
 
-    <div class="footer">
-        <p>Developer: <span class="glow-text">DARK SILENCE ( MAHIR )</span></p>
-        <p>Team: <strong>Cyber Sentinel Bangladesh</strong></p>
-    </div>
+    <button class="btn-execute" onclick="simulateAction()">Initialize Reporting Sequence</button>
 </div>
 
 <script>
-    function startReporting() {
-        const link = document.getElementById('targetLink').value;
-        const status = document.getElementById('status');
-
-        if (!link) {
-            alert("অনুগ্রহ করে আইডির লিংক দিন!");
-            return;
-        }
-
-        status.innerHTML = "টার্গেট লক করা হয়েছে...<br>";
+    function simulateAction() {
+        const ipDisplay = document.getElementById('current-ip');
+        let count = 0;
         
-        let count = 1;
         const interval = setInterval(() => {
-            status.innerHTML += রিপোর্ট নং ${count} পাঠানো হচ্ছে... সফল!<br>;
-            status.scrollTop = status.scrollHeight;
-            count++;
+            const randomIP = Math.floor(Math.random() * 255) + '.' + 
+                             Math.floor(Math.random() * 255) + '.' + 
+                             Math.floor(Math.random() * 255) + '.' + 
+                             Math.floor(Math.random() * 255);
             
-            if (count > 100) { // ডেমো হিসেবে ১০০ বার দেখাবে
+            ipDisplay.innerText = "ROTATING IP: " + randomIP;
+            ipDisplay.style.color = "#bc13fe";
+            
+            count++;
+            if(count > 10) {
                 clearInterval(interval);
-                status.innerHTML += "অটোমেশন মোড সক্রিয় রাখা হয়েছে।";
+                ipDisplay.innerText = "SEQUENCE COMPLETE | ALL CATEGORIES LOGGED";
+                ipDisplay.style.color = "#00f3ff";
+                alert("Interface Process Completed Successfully.");
             }
-        }, 1500);
+        }, 300);
     }
 </script>
 
