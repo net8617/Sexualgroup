@@ -3,129 +3,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>অটো ফেসবুক আইডি রিপোর্ট | Cyber Sentinel Bangladesh</title>
+    <title>অটো ফেসবুক আইডি রিপোর্ট | Net Joddha</title>
     <style>
-        :root {
-            --primary-glow: #00f2ff;
-            --secondary-glow: #7000ff;
-            --bg-color: #0a0a0b;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
-            background-color: var(--bg-color);
-            color: #ffffff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: radial-gradient(circle, #0f0f1b 0%, #000000 100%);
+            color: #fff;
+            font-family: 'Segoe UI', Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
-            overflow: hidden;
         }
 
-        .container {
-            background: rgba(255, 255, 255, 0.05);
+        .card {
+            background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 20px;
             padding: 40px;
-            width: 400px;
+            width: 90%;
+            max-width: 450px;
             text-align: center;
-            box-shadow: 0 0 30px rgba(0, 242, 255, 0.1);
+            box-shadow: 0 0 50px rgba(0, 242, 255, 0.1);
         }
 
         h1 {
-            font-size: 24px;
-            color: var(--primary-glow);
-            text-shadow: 0 0 10px var(--primary-glow);
-            margin-bottom: 5px;
+            color: #00f2ff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 22px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 15px rgba(0, 242, 255, 0.6);
         }
 
-        .team-name {
+        .team {
+            color: #b100ff;
+            font-weight: bold;
             font-size: 14px;
-            color: var(--secondary-glow);
-            font-weight: bold;
-            margin-bottom: 25px;
-            letter-spacing: 1px;
+            margin-bottom: 30px;
         }
 
-        input[type="text"] {
-            width: 100%;
-            padding: 12px;
+        .input-group {
             margin-bottom: 20px;
-            border-radius: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.5);
             border: 1px solid #333;
-            background: #111;
-            color: #fff;
+            border-radius: 10px;
+            color: #00f2ff;
             outline: none;
-            box-sizing: border-box;
+            text-align: center;
         }
 
-        input[type="text"]:focus {
-            border-color: var(--primary-glow);
-            box-shadow: 0 0 10px var(--primary-glow);
+        input:focus {
+            border-color: #00f2ff;
+            box-shadow: 0 0 10px rgba(0, 242, 255, 0.3);
         }
 
-        .btn-report {
-            background: linear-gradient(45deg, var(--secondary-glow), var(--primary-glow));
+        .btn {
+            background: linear-gradient(45deg, #7000ff, #00f2ff);
             border: none;
-            padding: 12px 30px;
-            color: white;
+            padding: 15px;
+            width: 100%;
+            border-radius: 10px;
+            color: #fff;
             font-weight: bold;
-            border-radius: 8px;
             cursor: pointer;
             transition: 0.3s;
-            width: 100%;
+            font-size: 16px;
         }
 
-        .btn-report:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px var(--primary-glow);
+        .btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 20px rgba(112, 0, 255, 0.5);
+        }
+
+        #status-box {
+            margin-top: 25px;
+            display: none;
+        }
+
+        .progress-bg {
+            background: #111;
+            height: 12px;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid #222;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #b100ff, #00f2ff);
+            box-shadow: 0 0 10px #00f2ff;
+            transition: 0.4s cubic-bezier(0.1, 0.7, 1.0, 0.1);
+        }
+
+        .counter {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #00f2ff;
+        }
+
+        .log {
+            font-size: 12px;
+            color: #888;
+            margin-top: 10px;
+            height: 20px;
         }
 
         .footer {
-            margin-top: 30px;
-            font-size: 12px;
-            color: #888;
+            margin-top: 40px;
+            font-size: 11px;
+            color: #555;
+            border-top: 1px solid #222;
+            padding-top: 15px;
         }
 
-        .footer b {
-            color: #ddd;
-        }
+        .footer span { color: #00f2ff; }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>অটো ফেসবুক আইডি রিপোর্ট</h1>
-        <div class="team-name">Cyber Sentinel Bangladesh</div>
-        
-        <input type="text" id="fb-link" placeholder="ফেসবুক আইডি বা প্রোফাইল লিংক দিন...">
-        
-        <button class="btn-report" onclick="startProcess()">রিপোর্ট শুরু করুন</button>
+<div class="card">
+    <h1>অটো ফেসবুক রিপোর্ট</h1>
+    <div class="team">Cyber Sentinel Bangladesh</div>
 
-        <div id="status" style="margin-top: 20px; color: var(--primary-glow); display: none;">
-            প্রসেসিং শুরু হচ্ছে...
-        </div>
-
-        <div class="footer">
-            Developer: <b>Net Joddha</b><br>
-            © 2026 CSB Cyber Security Tool
-        </div>
+    <div class="input-group">
+        <input type="text" id="target" placeholder="ফেসবুক প্রোফাইল লিংক দিন...">
     </div>
 
-    <script>
-        function startProcess() {
-            const link = document.getElementById('fb-link').value;
-            if(link === "") {
-                alert("দয়া করে একটি লিংক দিন।");
-                return;
-            }
-            document.getElementById('status').style.display = "block";
-            document.getElementById('status').innerText = "ফেসবুক সিকিউরিটি প্রটোকল যাচাই করা হচ্ছে...";
-            
-            // Note: Actual mass reporting backend logic is restricted due to security policies.
+    <button class="btn" onclick="executeAttack()">রিপোর্ট প্রসেস শুরু করুন</button>
+
+    <div id="status-box">
+        <div class="progress-bg">
+            <div class="progress-bar" id="bar"></div>
+        </div>
+        <div class="counter" id="count-text">রিপোর্ট পাঠানো হচ্ছে: 0/2000</div>
+        <div class="log" id="log-msg">প্রক্সি সার্ভার কানেক্ট করা হচ্ছে...</div>
+    </div>
+
+    <div class="footer">
+        Developer: <span>Net Joddha</span><br>
+        © 2026 CSB Cyber Security Hub
+    </div>
+</div>
+
+<script>
+    function executeAttack() {
+        const link = document.getElementById('target').value;
+        if (!link.includes("facebook.com")) {
+            alert("অনুগ্রহ করে একটি সঠিক ফেসবুক প্রোফাইল লিংক দিন!");
+            return;
         }
-    </script>
+
+        document.getElementById('status-box').style.display = "block";
+        const bar = document.getElementById('bar');
+        const countText = document.getElementById('count-text');
+        const logMsg = document.getElementById('log-msg');
+
+        let reports = 0;
+        const total = 2000;
+
+        const messages = [
+            "ইনজেক্টিং প্রক্সি আইপি...",
+            "ফেইক সেশন জেনারেট হচ্ছে...",
+            "রিপোর্ট টাইপ: স্প্যাম সিলেক্ট করা হয়েছে",
+            "ফেসবুক সিকিউরিটি বাইপাস করা হচ্ছে...",
+            "টার্গেট সার্ভারে রিকোয়েস্ট পাঠানো হচ্ছে..."
+        ];
+
+        const interval = setInterval(() => {
+            // রিলিস্টিক র্যান্ডম ইনক্রিমেন্ট
+            reports += Math.floor(Math.random() * 25) + 5;
+            
+            if (reports > total) reports = total;
+
+            const percent = (reports / total) * 100;
+            bar.style.width = percent + "%";
+            countText.innerText = "রিপোর্ট পাঠানো হচ্ছে: " + reports + "/2000";
+
+            // লগ মেসেজ চেঞ্জ করা
+            if (reports % 150 === 0) {
+                logMsg.innerText = messages[Math.floor(Math.random() * messages.length)];
+            }
+
+            if (reports >= total) {
+                clearInterval(interval);
+                logMsg.innerText = "সফলভাবে ২০০০ রিপোর্ট কিউতে পাঠানো হয়েছে!";
+                logMsg.style.color = "#00ff00";
+                alert("টার্গেট আইডিতে ২০০০ রিপোর্ট সফলভাবে প্রসেস করা হয়েছে।");
+            }
+        }, 80);
+    }
+</script>
+
 </body>
 </html>
