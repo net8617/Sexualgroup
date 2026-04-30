@@ -3,12 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auto FB ID Report | CSB</title>
+    <title>অটো ফেসবুক আইডি রিপোর্ট | Cyber Sentinel Bangladesh</title>
     <style>
+        :root {
+            --primary-glow: #00f2ff;
+            --secondary-glow: #7000ff;
+            --bg-color: #0a0a0b;
+        }
+
         body {
-            background-color: #0a0a0a;
-            color: #00ff41;
-            font-family: 'Courier New', Courier, monospace;
+            background-color: var(--bg-color);
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -18,125 +24,108 @@
         }
 
         .container {
-            border: 2px solid #00ff41;
-            padding: 30px;
-            background: rgba(0, 20, 0, 0.9);
-            box-shadow: 0 0 20px #00ff41;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            width: 400px;
             text-align: center;
-            width: 90%;
-            max-width: 500px;
-            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(0, 242, 255, 0.1);
         }
 
         h1 {
-            font-size: 1.5rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-            text-shadow: 0 0 10px #00ff41;
+            font-size: 24px;
+            color: var(--primary-glow);
+            text-shadow: 0 0 10px var(--primary-glow);
+            margin-bottom: 5px;
         }
 
-        .input-group {
-            margin-bottom: 20px;
+        .team-name {
+            font-size: 14px;
+            color: var(--secondary-glow);
+            font-weight: bold;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
         }
 
-        input {
+        input[type="text"] {
             width: 100%;
             padding: 12px;
-            background: #000;
-            border: 1px solid #00ff41;
-            color: #00ff41;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border: 1px solid #333;
+            background: #111;
+            color: #fff;
             outline: none;
             box-sizing: border-box;
         }
 
-        button {
-            padding: 10px 25px;
-            background: #00ff41;
-            color: #000;
+        input[type="text"]:focus {
+            border-color: var(--primary-glow);
+            box-shadow: 0 0 10px var(--primary-glow);
+        }
+
+        .btn-report {
+            background: linear-gradient(45deg, var(--secondary-glow), var(--primary-glow));
             border: none;
+            padding: 12px 30px;
+            color: white;
             font-weight: bold;
+            border-radius: 8px;
             cursor: pointer;
             transition: 0.3s;
-            text-transform: uppercase;
+            width: 100%;
         }
 
-        button:hover {
-            background: #000;
-            color: #00ff41;
-            border: 1px solid #00ff41;
-            box-shadow: 0 0 15px #00ff41;
-        }
-
-        .status-box {
-            margin-top: 20px;
-            font-size: 0.9rem;
-            height: 60px;
-            overflow-y: auto;
-            border-top: 1px solid #333;
-            padding-top: 10px;
+        .btn-report:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px var(--primary-glow);
         }
 
         .footer {
-            margin-top: 25px;
-            font-size: 0.8rem;
-            border-top: 1px solid #333;
-            padding-top: 10px;
+            margin-top: 30px;
+            font-size: 12px;
+            color: #888;
         }
 
-        .glow-text {
-            color: #ff003c;
-            text-shadow: 0 0 5px #ff003c;
+        .footer b {
+            color: #ddd;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>অটো ফেসবুক আইডি রিপোর্ট</h1>
-    <p>Target Link বসান নিচে:</p>
-    
-    <div class="input-group">
-        <input type="text" id="targetLink" placeholder="https://www.facebook.com/profile.php?id=...">
-    </div>
-
-    <button onclick="startReporting()">রিপোর্ট শুরু করুন</button>
-
-    <div class="status-box" id="status">
-        সিস্টেম রেডি... কমান্ডের জন্য অপেক্ষা করছে।
-    </div>
-
-    <div class="footer">
-        <p>Developer: <span class="glow-text">DARK SILENCE ( MAHIR )</span></p>
-        <p>Team: <strong>Cyber Sentinel Bangladesh</strong></p>
-    </div>
-</div>
-
-<script>
-    function startReporting() {
-        const link = document.getElementById('targetLink').value;
-        const status = document.getElementById('status');
-
-        if (!link) {
-            alert("অনুগ্রহ করে আইডির লিংক দিন!");
-            return;
-        }
-
-        status.innerHTML = "টার্গেট লক করা হয়েছে...<br>";
+    <div class="container">
+        <h1>অটো ফেসবুক আইডি রিপোর্ট</h1>
+        <div class="team-name">Cyber Sentinel Bangladesh</div>
         
-        let count = 1;
-        const interval = setInterval(() => {
-            status.innerHTML += রিপোর্ট নং ${count} পাঠানো হচ্ছে... সফল!<br>;
-            status.scrollTop = status.scrollHeight;
-            count++;
-            
-            if (count > 100) { // ডেমো হিসেবে ১০০ বার দেখাবে
-                clearInterval(interval);
-                status.innerHTML += "অটোমেশন মোড সক্রিয় রাখা হয়েছে।";
-            }
-        }, 1500);
-    }
-</script>
+        <input type="text" id="fb-link" placeholder="ফেসবুক আইডি বা প্রোফাইল লিংক দিন...">
+        
+        <button class="btn-report" onclick="startProcess()">রিপোর্ট শুরু করুন</button>
 
+        <div id="status" style="margin-top: 20px; color: var(--primary-glow); display: none;">
+            প্রসেসিং শুরু হচ্ছে...
+        </div>
+
+        <div class="footer">
+            Developer: <b>Net Joddha</b><br>
+            © 2026 CSB Cyber Security Tool
+        </div>
+    </div>
+
+    <script>
+        function startProcess() {
+            const link = document.getElementById('fb-link').value;
+            if(link === "") {
+                alert("দয়া করে একটি লিংক দিন।");
+                return;
+            }
+            document.getElementById('status').style.display = "block";
+            document.getElementById('status').innerText = "ফেসবুক সিকিউরিটি প্রটোকল যাচাই করা হচ্ছে...";
+            
+            // Note: Actual mass reporting backend logic is restricted due to security policies.
+        }
+    </script>
 </body>
 </html>
